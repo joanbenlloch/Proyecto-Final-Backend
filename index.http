@@ -1,0 +1,243 @@
+//token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MjgxOWQ0MGIxYjZjYjVjZWRkM2YiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQ0ODIxMDMsImV4cCI6MTY4NDU2ODUwM30.LN0m2NnRH6it3kE8ZgLKAYANvR_XhJfHtX_PQ4rWlcM
+
+//Registro de usuario
+POST http://localhost:3000/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Joey00",
+    "age": 23,
+    "email": "user13@test.com",
+    "password": "HolaMundo.03",
+    "ciudad": "Madrid",
+    "intereses": "Deporte, informática",
+    "permiteRecibirOfertas": true
+}
+//LOGIN para conseguir el token
+###
+
+POST http://localhost:3000/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user13@test.com",
+    "password": "HolaMundo.03"
+}
+###
+
+POST http://localhost:3000/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user14@test.com",
+    "password": "HolaMundo.04"
+}
+###
+
+####
+//Segundo usuario registro.
+
+POST http://localhost:3000/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Joey02",
+    "age": 21,
+    "email": "user14@test.com",
+    "password": "HolaMundo.04",
+    "ciudad": "Valencia",
+    "intereses": "Deporte, informática",
+    "permiteRecibirOfertas": true
+}
+
+###
+//Get para ver los usuarios de la base de datos
+GET http://localhost:3000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MWNlNWJiNzYzZGE5MDhjZTEzYWEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQ0NzkzODgsImV4cCI6MTY4NDU2NTc4OH0.Fi8r17efGmNBvwKge_PQYtbMzQT558tp5e_Fq8cTPLQ
+
+###
+//Modifico un usuario, solo puedes modificar tu mismo usuario, el token y el id deben de ser iguales
+PUT http://localhost:3000/api/auth/update/64672819d40b1b6cb5cedd3f
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MmM1MTc4OTI1MmFhYzY3ZDEwZGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NDQ4MzE1MywiZXhwIjoxNjg0NTY5NTUzfQ.U8FIPvdZirFQhFZKMbWuAOH9rMKtjYvH7QP47cUWw6U
+
+{
+    "name": "Joey01",
+    "age": 23,
+    "password": "$2a$10$7biAbVDZFAZ9o8faCTPEweqAuBm/NdU0yiewR9KMthPhlMv0dhI/2",
+    "ciudad": "Madrid",
+    "intereses": "Deporte, informatica, arte",
+    "permiteRecibirOfertas": false
+}
+
+
+###
+//Darse de baja, solo puedes eliminarte a ti mismo, el token y el id deben de ser iguales
+DELETE http://localhost:3000/api/auth/users/645fc2b308bcb4cfa1e518db
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVmYzI2MTA4YmNiNGNmYTFlNTE4ZDkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQwNDc0OTgsImV4cCI6MTY4NDEzMzg5OH0.jMKTYodqMkehtlneEjZBwWVPYBXa7ao2Rq6o6xCUFZ4
+
+###
+//registro de un comercio
+POST http://localhost:3000/api/comercio HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MjgxOWQ0MGIxYjZjYjVjZWRkM2YiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQ0ODIxMDMsImV4cCI6MTY4NDU2ODUwM30.LN0m2NnRH6it3kE8ZgLKAYANvR_XhJfHtX_PQ4rWlcM
+
+{
+    "nombre": "Comercio1",
+    "cif": "12345678A",
+    "direccion": "Calle 1",
+    "email": "comercio1@com.com",
+    "telefono": "123456789"
+}
+
+###
+//registro de un segundo comercio
+POST http://localhost:3000/api/comercio HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MWNlNWJiNzYzZGE5MDhjZTEzYWEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQ0NzkzODgsImV4cCI6MTY4NDU2NTc4OH0.Fi8r17efGmNBvwKge_PQYtbMzQT558tp5e_Fq8cTPLQ
+
+{
+    "nombre": "Comercio3",
+    "cif": "12345678D",
+    "direccion": "Calle 3",
+    "email": "comercio5@com.com",
+    "telefono": "333456789"
+}
+
+###
+//elimino un comercio por id
+DELETE http://localhost:3000/api/comercio/646086fbc9a5cdffe5f20f32
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MWNlNWJiNzYzZGE5MDhjZTEzYWEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQ0NzkzODgsImV4cCI6MTY4NDU2NTc4OH0.Fi8r17efGmNBvwKge_PQYtbMzQT558tp5e_Fq8cTPLQ
+
+###
+//Obtener los comercios que tengo 
+GET http://localhost:3000/api/comercio
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3MjgxOWQ0MGIxYjZjYjVjZWRkM2YiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQ0ODIxMDMsImV4cCI6MTY4NDU2ODUwM30.LN0m2NnRH6it3kE8ZgLKAYANvR_XhJfHtX_PQ4rWlcM
+
+
+###
+//Obtener un comercio en concreto por id
+GET http://localhost:3000/api/comercio/6460b812b776576cd4cd9e32
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVmYzI2MTA4YmNiNGNmYTFlNTE4ZDkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQwNDc0OTgsImV4cCI6MTY4NDEzMzg5OH0.jMKTYodqMkehtlneEjZBwWVPYBXa7ao2Rq6o6xCUFZ4
+
+###
+//Modifico un comercio por id
+PUT http://localhost:3000/api/comercio/6460c0b5dd5f4572b3bd5db6 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVmYzI2MTA4YmNiNGNmYTFlNTE4ZDkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODQwNDc0OTgsImV4cCI6MTY4NDEzMzg5OH0.jMKTYodqMkehtlneEjZBwWVPYBXa7ao2Rq6o6xCUFZ4
+
+{
+    "nombre": "Comercio2",
+    "cif": "22345678B",
+    "direccion": "Calle 2",
+    "email": "comercio3@com.com",
+    "telefono": "223456789"
+}
+
+//Token de comercio: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3Mjg0ZGQ0MGIxYjZjYjVjZWRkNDMiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQ0ODIxMjZ9.W2iNSN0crpX400xDLbyDHMtWtzA6dbU7OAho0TXaz_s
+
+###
+
+GET http://localhost:3000/api/pagina
+
+###
+GET http://localhost:3000/api/pagina/6460932c37a157367d9664de
+
+
+###
+
+PUT http://localhost:3000/api/pagina/6460c0b5dd5f4572b3bd5db8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYwYzBiNWRkNWY0NTcyYjNiZDVkYjYiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQwNjIzOTB9.f0ZHGBFw1EQWVkshfdjqzddasOzccgEsEcsN4RmyEa4
+
+{
+    "ciudad": "Madrid",
+    "actividad": "Deporte",
+    "resumen": "Comercio de deportes de todo tipo"
+}
+
+###
+
+PUT http://localhost:3000/api/pagina/6460c0b5dd5f4572b3bd5db8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYwYzBiNWRkNWY0NTcyYjNiZDVkYjYiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQwNjIzOTB9.f0ZHGBFw1EQWVkshfdjqzddasOzccgEsEcsN4RmyEa4
+
+{
+    "ciudad": "Valencia",
+    "actividad": "Arte"
+}
+
+###
+DELETE http://localhost:3000/api/pagina/645f4490784a0f140a842b70
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYwYjgxMmI3NzY1NzZjZDRjZDllMzIiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQwNjAxNzl9.sUakRYjGnhe1LF7LeSMKlEdqeL7Sukcr6M8YoZ1hIkc
+
+###
+
+PUT http://localhost:3000/api/pagina/6467284ed40b1b6cb5cedd45 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYwYjgxMmI3NzY1NzZjZDRjZDllMzIiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQwNjAxNzl9.sUakRYjGnhe1LF7LeSMKlEdqeL7Sukcr6M8YoZ1hIkc
+
+{
+    "ciudad": "Valencia",
+    "actividad": "Arte",
+    "resumen": "Pintura y escultura"
+}
+###
+POST http://localhost:3000/api/pagina/texto/6467284ed40b1b6cb5cedd45 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3Mjg0ZGQ0MGIxYjZjYjVjZWRkNDMiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQ0ODIxMjZ9.W2iNSN0crpX400xDLbyDHMtWtzA6dbU7OAho0TXaz_s
+
+{
+    "texto": "Texto de prueba"
+}
+    
+###
+POST http://localhost:3000/api/pagina/imagen/6467284ed40b1b6cb5cedd45 HTTP/1.1
+Content-Type: multipart/form-data; boundary=Boundry
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3Mjg0ZGQ0MGIxYjZjYjVjZWRkNDMiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQ0ODIxMjZ9.W2iNSN0crpX400xDLbyDHMtWtzA6dbU7OAho0TXaz_s
+
+--Boundry
+Content-Disposition: form-data; name="image"; filename="img.jpg"
+Content-Type: image/jpg
+
+< ./img.jpg
+--Boundry--
+
+###
+
+GET http://localhost:3000/api/pagina/ciudad/Valencia/asc
+
+###
+GET http://localhost:3000/api/pagina/ciudad_actividad/Valencia/Deporte/noOrden
+
+###
+PATCH http://localhost:3000/api/pagina/6467284ed40b1b6cb5cedd45 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3Mjg0ZGQ0MGIxYjZjYjVjZWRkNDMiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQ0ODIxMjZ9.W2iNSN0crpX400xDLbyDHMtWtzA6dbU7OAho0TXaz_s
+
+{
+    "scoring": 11,
+    "resena": "Muy buen comercio"
+}
+
+###
+
+PATCH http://localhost:3000/api/pagina/6467284ed40b1b6cb5cedd45 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer 6467281eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY3Mjg0ZGQ0MGIxYjZjYjVjZWRkNDMiLCJyb2xlIjoiY29tZXJjaW8iLCJpYXQiOjE2ODQ0ODIxMjZ9.W2iNSN0crpX400xDLbyDHMtWtzA6dbU7OAho0TXaz_s9d40b1b6cb5cedd3f
+
+{
+    "scoring": 9,
+    "resena": "Buen comercio"
+}
+
+
+
+
+
+
+
+
+
+
+
